@@ -10,9 +10,11 @@ config_version=3
 
 [application]
 
-config/name="Flazer"
+config/name="Hooded Cloud"
+run/main_scene="res://nodes/intro_scene.tscn"
 config/icon="res://icon.png"
 
 [rendering]
 
+environment/default_clear_color=Color( 1, 1, 1, 1 )
 environment/default_environment="res://default_env.tres"

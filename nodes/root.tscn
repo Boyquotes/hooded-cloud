@@ -1,14 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://nodes/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/platform.png" type="Texture" id=2]
+[ext_resource path="res://nodes/tilemap.res" type="TileSet" id=2]
+[ext_resource path="res://nodes/Spikes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/orb_next_level.tscn" type="PackedScene" id=4]
 
-[node name="Node" type="Node" index="0"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4000, 40 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 20 )
+
+[node name="root" type="Node" index="0"]
 
 [node name="player" parent="." index="0" instance=ExtResource( 1 )]
 
+position = Vector2( 4352, -896 )
+
 [node name="Camera2D" type="Camera2D" parent="player" index="3"]
 
+offset = Vector2( 40, 20 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -31,174 +46,222 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+_sections_unfolded = [ "Transform" ]
 
-[node name="platform" type="StaticBody2D" parent="." index="1"]
+[node name="TileMap" type="TileMap" parent="." index="1"]
 
-position = Vector2( 400.663, 219.033 )
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
 collision_layer = 1
 collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -2293615, 2, 0, -2293611, 2, 0, -2293600, 2, 0, -2293596, 2, 0, -2228079, 1, 0, -2228075, 1, 0, -2228071, 2, 0, -2228068, 2, 0, -2228064, 1, 0, -2228060, 1, 0, -2162552, 3, 0, -2162550, 0, 0, -2162549, 0, 0, -2162548, 0, 0, -2162547, 0, 0, -2162546, 0, 0, -2162545, 0, 0, -2162544, 0, 0, -2162543, 0, 0, -2162542, 0, 0, -2162541, 0, 0, -2162540, 0, 0, -2162539, 0, 0, -2162538, 0, 0, -2162537, 0, 0, -2162536, 0, 0, -2162535, 0, 0, -2162534, 0, 0, -2162533, 0, 0, -2162532, 0, 0, -2162531, 0, 0, -2162530, 0, 0, -2162529, 0, 0, -2162528, 0, 0, -2162527, 0, 0, -2162526, 0, 0, -2162525, 0, 0, -2162524, 0, 0, -2162523, 0, 0, -2162522, 0, 0, -2162521, 0, 0, -2162520, 0, 0, -2031481, 3, 0, -1900406, 3, 0, -1769337, 3, 0, -1638262, 3, 0, -1507193, 3, 0, -1376118, 3, 0, -1245049, 3, 0, -1113974, 3, 0, -982905, 3, 0, -851830, 0, 0, -720761, 0, 0, -589686, 0, 0, -458617, 0, 0, -327542, 0, 0, -196473, 0, 0, -65398, 0, 0, 7, 2, 0, 8, 2, 0, 65543, 1, 0, 65544, 1, 0, 65671, 0, 0, 131079, 1, 0, 131080, 1, 0, 131209, 3, 0, 196615, 1, 0, 196616, 1, 0, 196746, 3, 0, 262151, 1, 0, 262152, 1, 0, 262160, 2, 0, 262162, 2, 0, 262174, 2, 0, 262182, 3, 0, 262205, 1610612736, 0, 262206, 1610612736, 0, 327687, 1, 0, 327688, 1, 0, 327696, 1, 0, 327698, 1, 0, 327708, 2, 0, 327710, 1, 0, 327722, 3, 0, 327738, 1610612736, 0, 327739, 1610612736, 0, 327741, 2, 0, 327742, 2, 0, 327815, 1610612736, 0, 327816, 1610612736, 0, 327817, 1610612736, 0, 327818, 1610612736, 0, 327819, 1610612736, 0, 327820, 1610612736, 0, 327821, 1610612736, 0, 327822, 1610612736, 0, 327823, 1610612736, 0, 327824, 1610612736, 0, 327825, 1610612736, 0, 327826, 1610612736, 0, 327827, 1610612736, 0, 327828, 1610612736, 0, 327829, 1610612736, 0, 327830, 1610612736, 0, 327831, 1610612736, 0, 327832, 1610612736, 0, 327833, 1610612736, 0, 327834, 1610612736, 0, 327835, 1610612736, 0, 327836, 1610612736, 0, 393216, 1610612736, 0, 393217, 1610612736, 0, 393218, 1610612736, 0, 393219, 1610612736, 0, 393220, 1610612736, 0, 393221, 1610612736, 0, 393222, 1610612736, 0, 393223, 1610612736, 0, 393224, 1610612736, 0, 393225, 1610612736, 0, 393226, 1610612736, 0, 393227, 1610612736, 0, 393228, 1610612736, 0, 393229, 1610612736, 0, 393230, 1610612736, 0, 393232, 1610612736, 0, 393234, 1610612736, 0, 393242, 2, 0, 393244, 1, 0, 393246, 1, 0, 393271, 1610612736, 0, 393272, 1610612736, 0, 393274, 2, 0, 393275, 2, 0, 393277, 1, 0, 393278, 1, 0, 393279, 1610612736, 0, 393280, 1610612736, 0, 393281, 1610612736, 0, 393285, 2, 0, 393289, 2, 0, 393291, 2, 0, 393309, 0, 0, 393351, 2, 0, 393358, 2, 0, 393365, 2, 0, 393372, 2, 0, 458752, 1610612736, 0, 458753, 1610612736, 0, 458754, 1610612736, 0, 458755, 1610612736, 0, 458756, 1610612736, 0, 458757, 1610612736, 0, 458758, 1610612736, 0, 458759, 1610612736, 0, 458760, 1610612736, 0, 458761, 1610612736, 0, 458762, 1610612736, 0, 458763, 1610612736, 0, 458764, 1610612736, 0, 458765, 1610612736, 0, 458766, 1610612736, 0, 458767, 1610612736, 0, 458768, 1610612736, 0, 458770, 1610612736, 0, 458776, 2, 0, 458778, 1, 0, 458780, 1, 0, 458782, 1, 0, 458804, 1610612736, 0, 458805, 1610612736, 0, 458807, 2, 0, 458808, 2, 0, 458810, 1, 0, 458811, 1, 0, 458813, 1, 0, 458814, 1, 0, 458815, 2, 0, 458817, 2, 0, 458819, 2, 0, 458821, 1, 0, 458823, 2, 0, 458825, 1, 0, 458827, 1, 0, 458830, 2, 0, 458832, 2, 0, 458834, 2, 0, 458836, 2, 0, 458838, 2, 0, 458840, 2, 0, 458842, 2, 0, 458845, 2, 0, 458848, 2, 0, 458851, 2, 0, 458854, 1610612736, 0, 458857, 2, 0, 458860, 1610612736, 0, 458865, 1610612736, 0, 458869, 1610612736, 0, 458873, 1610612736, 0, 458877, 1610612736, 0, 458881, 1610612736, 0, 458885, 1610612736, 0, 458887, 1, 0, 458894, 1, 0, 458901, 1, 0, 458908, 1, 0, 524288, 1610612736, 0, 524289, 1610612736, 0, 524290, 1610612736, 0, 524291, 1610612736, 0, 524292, 1610612736, 0, 524293, 1610612736, 0, 524294, 1610612736, 0, 524295, 1610612736, 0, 524296, 1610612736, 0, 524297, 1610612736, 0, 524298, 1610612736, 0, 524299, 1610612736, 0, 524300, 1610612736, 0, 524301, 1610612736, 0, 524302, 1610612736, 0, 524303, 1610612736, 0, 524304, 1610612736, 0, 524306, 1610612736, 0, 524312, 1, 0, 524314, 1, 0, 524316, 1, 0, 524318, 1, 0, 524323, 2, 0, 524325, 2, 0, 524327, 2, 0, 524329, 2, 0, 524331, 2, 0, 524333, 2, 0, 524337, 1610612736, 0, 524338, 1610612736, 0, 524340, 2, 0, 524341, 2, 0, 524343, 1, 0, 524344, 1, 0, 524346, 1, 0, 524347, 1, 0, 524349, 1, 0, 524350, 1, 0, 524351, 1, 0, 524353, 1, 0, 524355, 1, 0, 524357, 1, 0, 524359, 1, 0, 524361, 1, 0, 524363, 1, 0, 524366, 1, 0, 524368, 1, 0, 524370, 1, 0, 524372, 1, 0, 524374, 1, 0, 524376, 1, 0, 524378, 1, 0, 524381, 1, 0, 524384, 1, 0, 524387, 1, 0, 524390, 2, 0, 524393, 1, 0, 524396, 1610612736, 0, 524397, 1610612736, 0, 524401, 2, 0, 524405, 2, 0, 524409, 2, 0, 524413, 2, 0, 524417, 2, 0, 524421, 2, 0, 524423, 1, 0, 524430, 1, 0, 524437, 1, 0, 524444, 1, 0, 589824, 1610612736, 0, 589825, 1610612736, 0, 589826, 1610612736, 0, 589827, 1610612736, 0, 589828, 1610612736, 0, 589829, 1610612736, 0, 589830, 1610612736, 0, 589831, 1610612736, 0, 589832, 1610612736, 0, 589833, 1610612736, 0, 589834, 1610612736, 0, 589835, 1610612736, 0, 589836, 1610612736, 0, 589837, 1610612736, 0, 589838, 1610612736, 0, 589839, 1610612736, 0, 589840, 1610612736, 0, 589842, 1610612736, 0, 589843, 1610612736, 0, 589844, 1610612736, 0, 589847, 1610612736, 0, 589848, 1610612736, 0, 589850, 1610612736, 0, 589852, 1610612736, 0, 589854, 1610612736, 0, 589855, 1610612736, 0, 589856, 1610612736, 0, 589857, 1610612736, 0, 589858, 1610612736, 0, 589859, 1610612736, 0, 589861, 1, 0, 589863, 1, 0, 589865, 1, 0, 589867, 1, 0, 589869, 1, 0, 589870, 1610612736, 0, 589873, 2, 0, 589874, 2, 0, 589876, 1, 0, 589877, 1, 0, 589879, 1, 0, 589880, 1, 0, 589882, 1, 0, 589883, 1, 0, 589885, 1, 0, 589886, 1, 0, 589887, 1, 0, 589889, 1, 0, 589891, 1, 0, 589893, 1, 0, 589895, 1, 0, 589897, 1, 0, 589899, 1, 0, 589902, 1, 0, 589904, 1, 0, 589906, 1, 0, 589908, 1, 0, 589910, 1, 0, 589912, 1, 0, 589914, 1, 0, 589917, 1, 0, 589920, 1, 0, 589923, 1, 0, 589926, 1, 0, 589929, 1, 0, 589932, 1610612736, 0, 589933, 1610612736, 0, 589934, 1610612736, 0, 589935, 1610612736, 0, 589936, 1610612736, 0, 589937, 1, 0, 589941, 1, 0, 589945, 1, 0, 589949, 1, 0, 589953, 1, 0, 589957, 1, 0, 589959, 1, 0, 589966, 1, 0, 589973, 1, 0, 589980, 1, 0, 655378, 1610612736, 0, 655379, 1610612736, 0, 655380, 1610612736, 0, 655381, 1610612736, 0, 655390, 1610612736, 0, 655391, 1610612736, 0, 655392, 1610612736, 0, 655393, 1610612736, 0, 655394, 1610612736, 0, 655395, 1610612736, 0, 655397, 1, 0, 655399, 1, 0, 655401, 1, 0, 655403, 1, 0, 655405, 1, 0, 655406, 1610612736, 0, 655409, 1, 0, 655410, 1, 0, 655412, 1, 0, 655413, 1, 0, 655415, 1, 0, 655416, 1, 0, 655418, 1, 0, 655419, 1, 0, 655421, 1, 0, 655422, 1, 0, 655423, 1, 0, 655425, 1, 0, 655427, 1, 0, 655429, 1, 0, 655431, 1, 0, 655433, 1, 0, 655435, 1, 0, 655438, 1, 0, 655440, 1, 0, 655442, 1, 0, 655444, 1, 0, 655446, 1, 0, 655448, 1, 0, 655450, 1, 0, 655453, 1, 0, 655456, 1, 0, 655459, 1, 0, 655462, 1, 0, 655465, 1, 0, 655468, 1610612736, 0, 655469, 1610612736, 0, 655470, 1610612736, 0, 655471, 1610612736, 0, 655472, 1610612736, 0, 655473, 1610612736, 0, 655474, 1610612736, 0, 655475, 1610612736, 0, 655476, 1610612736, 0, 655477, 1610612736, 0, 655478, 1610612736, 0, 655479, 1610612736, 0, 655480, 1610612736, 0, 655481, 1, 0, 655485, 1, 0, 655489, 1, 0, 655493, 1, 0, 655495, 1, 0, 655502, 1, 0, 655509, 1, 0, 655516, 1, 0, 720914, 1610612736, 0, 720915, 1610612736, 0, 720916, 1610612736, 0, 720917, 1610612736, 0, 720918, 1610612736, 0, 720919, 1610612736, 0, 720920, 1610612736, 0, 720921, 1610612736, 0, 720922, 1610612736, 0, 720923, 1610612736, 0, 720924, 1610612736, 0, 720925, 1610612736, 0, 720926, 1610612736, 0, 720927, 1610612736, 0, 720928, 1610612736, 0, 720929, 1610612736, 0, 720930, 1610612736, 0, 720931, 1610612736, 0, 720933, 1, 0, 720935, 1, 0, 720937, 1, 0, 720939, 1, 0, 720941, 1, 0, 720942, 1610612736, 0, 720943, 1610612736, 0, 720944, 1610612736, 0, 720945, 1610612736, 0, 720946, 1610612736, 0, 720947, 1610612736, 0, 720948, 1, 0, 720949, 1, 0, 720951, 1, 0, 720952, 1, 0, 720954, 1, 0, 720955, 1, 0, 720957, 1, 0, 720958, 1, 0, 720959, 1, 0, 720961, 1, 0, 720963, 1, 0, 720965, 1, 0, 720966, 1610612736, 0, 720967, 1610612736, 0, 720969, 1, 0, 720971, 1, 0, 720974, 1, 0, 720976, 1, 0, 720978, 1, 0, 720980, 1, 0, 720982, 1, 0, 720984, 1, 0, 720986, 1, 0, 720989, 1, 0, 720992, 1, 0, 720995, 1, 0, 720998, 1, 0, 721001, 1, 0, 721004, 2, 0, 721009, 1, 0, 721013, 1, 0, 721016, 2, 0, 721017, 1, 0, 721021, 1, 0, 721025, 1, 0, 721029, 1, 0, 721031, 1, 0, 721038, 1, 0, 721045, 1, 0, 721052, 1, 0, 786450, 1610612736, 0, 786451, 1610612736, 0, 786452, 1610612736, 0, 786453, 1610612736, 0, 786454, 1610612736, 0, 786455, 1610612736, 0, 786456, 1610612736, 0, 786457, 1610612736, 0, 786458, 1610612736, 0, 786459, 1610612736, 0, 786460, 1610612736, 0, 786461, 1610612736, 0, 786462, 1610612736, 0, 786463, 1610612736, 0, 786464, 1610612736, 0, 786465, 1610612736, 0, 786466, 1610612736, 0, 786467, 1610612736, 0, 786469, 1, 0, 786471, 1, 0, 786473, 1, 0, 786475, 1, 0, 786477, 1610612736, 0, 786478, 1610612736, 0, 786479, 1610612736, 0, 786484, 1, 0, 786485, 1, 0, 786487, 1, 0, 786488, 1, 0, 786490, 1, 0, 786491, 1, 0, 786493, 1, 0, 786494, 1, 0, 786495, 1610612736, 0, 786496, 1610612736, 0, 786497, 1610612736, 0, 786498, 1610612736, 0, 786499, 1610612736, 0, 786500, 1610612736, 0, 786501, 1610612736, 0, 786502, 1610612736, 0, 786503, 1610612736, 0, 786504, 1610612736, 0, 786505, 1610612736, 0, 786506, 1610612736, 0, 786507, 1610612736, 0, 786508, 1610612736, 0, 786509, 1610612736, 0, 786510, 1610612736, 0, 786511, 1610612736, 0, 786512, 1610612736, 0, 786513, 1610612736, 0, 786514, 1610612736, 0, 786515, 1610612736, 0, 786516, 1610612736, 0, 786518, 1, 0, 786520, 1, 0, 786522, 1, 0, 786525, 1, 0, 786528, 1, 0, 786531, 1, 0, 786534, 1, 0, 786537, 1, 0, 786540, 1, 0, 786545, 1, 0, 786549, 1, 0, 786552, 1, 0, 786553, 1, 0, 786557, 1, 0, 786561, 1, 0, 786565, 1, 0, 786567, 1, 0, 786574, 1, 0, 786581, 1, 0, 786588, 1, 0 )
+_sections_unfolded = [ "Cell", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_area" type="Area2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 50, 550 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="platform" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_area" index="0"]
 
-texture = ExtResource( 2 )
+position = Vector2( 2930, -30 )
+shape = SubResource( 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform" index="1"]
+[node name="spawn_point" type="Node2D" parent="." index="3"]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+position = Vector2( 370, 50 )
 
-[node name="platform2" type="StaticBody2D" parent="." index="2"]
+[node name="checkpoint" type="Area2D" parent="." index="4"]
 
-position = Vector2( 652.388, 327.562 )
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
+editor/display_folded = true
+position = Vector2( 4352, 128 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="platform2" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint" index="0"]
 
-texture = ExtResource( 2 )
+shape = SubResource( 2 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform2" index="1"]
+[node name="spikes" type="Node" parent="." index="5"]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+editor/display_folded = true
 
-[node name="platform3" type="StaticBody2D" parent="." index="3"]
+[node name="spike" parent="spikes" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 934.261, 225.062 )
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 480, 192 )
 
-[node name="Sprite" type="Sprite" parent="platform3" index="0"]
+[node name="spike4" parent="spikes" index="1" instance=ExtResource( 3 )]
 
-texture = ExtResource( 2 )
+position = Vector2( 1024, 256 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform3" index="1"]
+[node name="spike5" parent="spikes" index="2" instance=ExtResource( 3 )]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+position = Vector2( 1504, 320 )
 
-[node name="platform4" type="StaticBody2D" parent="." index="4"]
+[node name="spike6" parent="spikes" index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 1164.88, 131.607 )
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 1536, 320 )
 
-[node name="Sprite" type="Sprite" parent="platform4" index="0"]
+[node name="spike32" parent="spikes" index="4" instance=ExtResource( 3 )]
 
-texture = ExtResource( 2 )
+position = Vector2( 1632, 320 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform4" index="1"]
+[node name="spike7" parent="spikes" index="5" instance=ExtResource( 3 )]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+position = Vector2( 2112, 352 )
 
-[node name="platform5" type="StaticBody2D" parent="." index="5"]
+[node name="spike8" parent="spikes" index="6" instance=ExtResource( 3 )]
 
-position = Vector2( 1454.29, 167.784 )
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 2176, 352 )
 
-[node name="Sprite" type="Sprite" parent="platform5" index="0"]
+[node name="spike9" parent="spikes" index="7" instance=ExtResource( 3 )]
 
-texture = ExtResource( 2 )
+position = Vector2( 2240, 320 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform5" index="1"]
+[node name="spike10" parent="spikes" index="8" instance=ExtResource( 3 )]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+position = Vector2( 2304, 352 )
 
-[node name="platform6" type="StaticBody2D" parent="." index="6"]
+[node name="spike11" parent="spikes" index="9" instance=ExtResource( 3 )]
 
-position = Vector2( 1710.54, 264.253 )
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 2368, 352 )
 
-[node name="Sprite" type="Sprite" parent="platform6" index="0"]
+[node name="spike12" parent="spikes" index="10" instance=ExtResource( 3 )]
 
-texture = ExtResource( 2 )
+position = Vector2( 2432, 352 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform6" index="1"]
+[node name="spike13" parent="spikes" index="11" instance=ExtResource( 3 )]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+position = Vector2( 2464, 352 )
 
-[node name="platform7" type="StaticBody2D" parent="." index="7"]
+[node name="spike14" parent="spikes" index="12" instance=ExtResource( 3 )]
 
-position = Vector2( 1966.79, 232.599 )
-rotation = -0.246933
-scale = Vector2( 8.31992, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 2528, 352 )
 
-[node name="Sprite" type="Sprite" parent="platform7" index="0"]
+[node name="spike15" parent="spikes" index="13" instance=ExtResource( 3 )]
 
-texture = ExtResource( 2 )
+position = Vector2( 2592, 352 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform7" index="1"]
+[node name="spike16" parent="spikes" index="14" instance=ExtResource( 3 )]
 
-build_mode = 0
-polygon = PoolVector2Array( -15.8297, -3.88896, -15.9582, 4.20731, 16.0414, 4.20731, 16.0414, -3.88896 )
+position = Vector2( 2656, 352 )
+
+[node name="spike17" parent="spikes" index="15" instance=ExtResource( 3 )]
+
+position = Vector2( 3520, 256 )
+
+[node name="spike18" parent="spikes" index="16" instance=ExtResource( 3 )]
+
+position = Vector2( 3648, 288 )
+
+[node name="spike19" parent="spikes" index="17" instance=ExtResource( 3 )]
+
+position = Vector2( 3680, 288 )
+
+[node name="spike20" parent="spikes" index="18" instance=ExtResource( 3 )]
+
+position = Vector2( 3712, 288 )
+
+[node name="spike21" parent="spikes" index="19" instance=ExtResource( 3 )]
+
+position = Vector2( 3776, 288 )
+
+[node name="spike22" parent="spikes" index="20" instance=ExtResource( 3 )]
+
+position = Vector2( 3808, 288 )
+
+[node name="spike23" parent="spikes" index="21" instance=ExtResource( 3 )]
+
+position = Vector2( 3840, 288 )
+
+[node name="spike24" parent="spikes" index="22" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, 32 )
+rotation = 1.5708
+
+[node name="spike25" parent="spikes" index="23" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, 0 )
+rotation = -1.5708
+
+[node name="spike26" parent="spikes" index="24" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, -96 )
+rotation = 1.5708
+
+[node name="spike27" parent="spikes" index="25" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, -128 )
+rotation = -1.5708
+
+[node name="spike28" parent="spikes" index="26" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, -224 )
+rotation = 1.5708
+
+[node name="spike29" parent="spikes" index="27" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, -256 )
+rotation = -1.5708
+
+[node name="spike30" parent="spikes" index="28" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, -352 )
+rotation = 1.5708
+
+[node name="spike31" parent="spikes" index="29" instance=ExtResource( 3 )]
+
+position = Vector2( 4384, -384 )
+rotation = -1.5708
+
+[node name="screen_swoop" type="CanvasLayer" parent="." index="6"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="orb_next_level" parent="." index="7" instance=ExtResource( 4 )]
+
+editor/display_folded = true
+
+[node name="next_level" parent="orb_next_level" index="0"]
+
+next_scene = "res://nodes/levels/lvl_2.tscn"
 
 
+[editable path="orb_next_level"]

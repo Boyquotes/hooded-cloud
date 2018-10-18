@@ -1,17 +1,18 @@
 extends KinematicBody2D
 
-var speed = 300
-var falling = true;
-var jumping = false;
+var speed = 200
+var falling = false
+var jumping = false
 var moving_left = false
 var moving_right = false
 var on_ground = false
 var mid_air_release = false
-const FALL_SPEED = 100
-const JUMP_SPEED = 800
+
+const FALL_SPEED = 20
+const JUMP_SPEED = 450
 var falling_speed = FALL_SPEED
 var jump_speed = JUMP_SPEED
-var gravity = 50
+var gravity = 20
 
 func _ready():
 	set_process(true)
@@ -25,9 +26,11 @@ func _input(event):
 	if event.is_action_pressed("ui_left"):
 		moving_left = true
 		moving_right = false
+		get_node("Sprite").flip_h = true
 	elif event.is_action_pressed("ui_right"):
 		moving_right = true
 		moving_left = false
+		get_node("Sprite").flip_h = false
 	elif event.is_action_pressed("ui_accept"):
 		jumping = true
 		mid_air_release = false
@@ -40,30 +43,52 @@ func _input(event):
 		moving_right = false
 
 func _process(delta):
-	if falling:
-		if falling_speed != FALL_SPEED:
-			jumping = false
-		if jumping:
-			move_and_slide(Vector2(0.0, -jump_speed), Vector2(0,-1))
+	if falling_speed != FALL_SPEED:
+		get_node("Sprite").play(4,7)
+		jumping = false
+		falling = true
+	if jumping:
+		get_node("Sprite").play(4,7)
+		if jump_speed > -400:
 			if mid_air_release:
-				jump_speed -= 80
+				jump_speed -= 40
 			else:
-				jump_speed -= 50
-			if is_on_ceiling():
-				jumping = false
-				get_node("jump_timer").stop()
+				jump_speed -= 25
 		else:
-			move_and_slide(Vector2(0.0, falling_speed), Vector2(0,-1))
-		if is_on_floor():
-			on_ground = true
-			falling_speed = FALL_SPEED
-			jump_speed = JUMP_SPEED
+			jump_speed = -400
+			falling_speed = -jump_speed
+		move_and_slide(Vector2(0.0, -jump_speed), Vector2(0,-1))
+		if is_on_ceiling():
 			jumping = false
-		else:
-			if not jumping:
+			get_node("jump_timer").stop()
+	else:
+		move_and_slide(Vector2(0.0, falling_speed), Vector2(0,-1))
+	if is_on_floor():
+		on_ground = true
+		falling = false
+		falling_speed = FALL_SPEED
+		jump_speed = JUMP_SPEED
+		if jumping:
+			get_node("Sprite").stop(0)
+		if not on_ground:
+			get_node("Sprite").play(4,7)
+		jumping = false
+	else:
+		if not jumping:
+			if falling_speed <= 400:
 				falling_speed += gravity
+			else:
+				falling_speed = 400
+				
 	if moving_left:
 		move_and_slide(Vector2(-speed, 0))
+		if not jumping:
+			get_node("Sprite").play(7, 12)
 	elif moving_right:
 		move_and_slide(Vector2(speed,0))
-
+		if not jumping:
+			get_node("Sprite").play(7, 12)
+	elif not moving_right and not moving_left and on_ground and not jumping:
+		get_node("Sprite").stop(0)
+	if falling:
+		get_node("Sprite").play(5,7)
