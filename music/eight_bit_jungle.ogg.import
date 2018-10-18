@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/eight_bit_jungle.ogg-74a19607c59cb396ea824d39b7d8dc7c.oggstr"
+
+[deps]
+
+source_file="res://music/eight_bit_jungle.ogg"
+dest_files=[ "res://.import/eight_bit_jungle.ogg-74a19607c59cb396ea824d39b7d8dc7c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

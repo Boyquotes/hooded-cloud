@@ -37,6 +37,6 @@ audio_bus_name = "Master"
 
 position = Vector2( 16, 16 )
 build_mode = 0
-polygon = PoolVector2Array( -16, 16, 16, 16, 16, -16, -16, -16 )
+polygon = PoolVector2Array( -11.9498, 12.4249, 11.1194, 12.9005, 11.1194, -12.5469, -12.6633, -12.7847 )
 
 
