@@ -79,11 +79,11 @@ tracks/4/keys = {
 "values": [ Vector2( 3168, 192 ), Vector2( 3264, 192 ) ]
 }
 
-[node name="root" type="Node"]
+[node name="root" type="Node" index="0"]
 
 [node name="player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 384, 96 )
+position = Vector2( 416, 160 )
 
 [node name="Camera2D" type="Camera2D" parent="player" index="3"]
 
@@ -111,6 +111,9 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
@@ -158,7 +161,8 @@ shape = SubResource( 1 )
 
 [node name="spawn_point" type="Node2D" parent="." index="3"]
 
-position = Vector2( 370, 50 )
+position = Vector2( 352, 128 )
+scale = Vector2( 1.21875, 1 )
 
 [node name="spikes" type="Node" parent="." index="4"]
 
