@@ -7,16 +7,11 @@
 [ext_resource path="res://nodes/orb_next_level.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
 extents = Vector2( 4000, 40 )
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "moving spikes"
-length = 1.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("moving_r_spike2:position")
 tracks/0/interp = 1
@@ -80,186 +75,107 @@ tracks/4/keys = {
 
 [node name="root" type="Node"]
 
-[node name="player" parent="." index="0" instance=ExtResource( 1 )]
-
+[node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 384, 32 )
 
-[node name="Camera2D" type="Camera2D" parent="player" index="3"]
-
+[node name="Camera2D" type="Camera2D" parent="player"]
 offset = Vector2( 40, 20 )
-anchor_mode = 1
-rotating = false
 current = true
 zoom = Vector2( 0.5, 0.5 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Transform" ]
+smoothing_enabled = true
+smoothing_speed = 4.0
 
-[node name="death_area" type="Area2D" parent="." index="1"]
-
-editor/display_folded = true
+[node name="death_area" type="Area2D" parent="."]
 position = Vector2( 50, 550 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="death_area" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_area"]
 position = Vector2( 2930, -30 )
 shape = SubResource( 1 )
 
-[node name="spawn_point" type="Node2D" parent="." index="2"]
-
+[node name="spawn_point" type="Node2D" parent="."]
 position = Vector2( 384, 32 )
 
-[node name="checkpoint" parent="." index="3" instance=ExtResource( 2 )]
-
+[node name="checkpoint" parent="." instance=ExtResource( 2 )]
 position = Vector2( 3136, 192 )
 
-[node name="checkpoint2" parent="." index="4" instance=ExtResource( 2 )]
-
+[node name="checkpoint2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 3584, -288 )
 
-[node name="screen_swoop" type="CanvasLayer" parent="." index="5"]
+[node name="screen_swoop" type="CanvasLayer" parent="."]
 
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="TileMap" type="TileMap" parent="." index="6"]
-
-mode = 0
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( -786306, 3, 0, -786300, 3, 0, -786290, 3, 0, -786277, 2, 0, -786275, 2, 0, -720756, 3, 0, -720745, 3, 0, -720744, 1610612736, 0, -720743, 1610612736, 0, -720742, 1610612736, 0, -720741, 1610612736, 0, -720740, 1610612736, 0, -720739, 1610612736, 0, -720738, 1610612736, 0, -720737, 1610612736, 0, -720736, 1610612736, 0, -655247, 3, 0, -655246, 3, 0, -655245, 3, 0, -655243, 3, 0, -655241, 3, 0, -655236, 3, 0, -655231, 3, 0, -655221, 3, 0, -655216, 3, 0, -655212, 3, 0, -655208, 2, 0, -655200, 2, 0, -589690, 3, 0, -589686, 3, 0, -589672, 1, 0, -589664, 1, 0, -524177, 1610612736, 0, -524176, 1610612736, 0, -524167, 3, 0, -524142, 3, 0, -524136, 1, 0, -524128, 1, 0, -458600, 1, 0, -458592, 1, 0, -393108, 1610612736, 0, -393101, 1610612736, 0, -393064, 1, 0, -393056, 1, 0, -327528, 1, 0, -327520, 1, 0, -262033, 1610612736, 0, -262032, 1610612736, 0, -261992, 1, 0, -261984, 1, 0, -196456, 1, 0, -196448, 1, 0, -130962, 1610612736, 0, -130961, 1610612736, 0, -130960, 1610612736, 0, -130959, 1610612736, 0, 109, 1610612736, 0, 114, 1610612736, 0, 131183, 1610612736, 0, 131184, 1610612736, 0, 196613, 1610612736, 0, 196614, 1610612736, 0, 196615, 1610612736, 0, 196616, 1610612736, 0, 196617, 1610612736, 0, 196618, 1610612736, 0, 196619, 1610612736, 0, 196620, 1610612736, 0, 196621, 1610612736, 0, 196622, 1610612736, 0, 196623, 1610612736, 0, 196624, 1610612736, 0, 196625, 1610612736, 0, 196626, 1610612736, 0, 196627, 1610612736, 0, 196628, 1610612736, 0, 196654, 3, 0, 196670, 3, 0, 196678, 3, 0, 196686, 3, 0, 196690, 3, 0, 196694, 3, 0, 262149, 2, 0, 262156, 2, 0, 262164, 2, 0, 262165, 1610612736, 0, 262188, 3, 0, 262194, 3, 0, 262199, 3, 0, 262211, 3, 0, 262238, 3, 0, 262239, 3, 0, 262240, 3, 0, 262254, 1610612736, 0, 262257, 1610612736, 0, 327685, 1, 0, 327692, 1, 0, 327700, 1, 0, 327702, 1610612736, 0, 327722, 3, 0, 327728, 3, 0, 327739, 3, 0, 327744, 3, 0, 327749, 3, 0, 327752, 3, 0, 327756, 3, 0, 327760, 3, 0, 327764, 3, 0, 327768, 3, 0, 327772, 3, 0, 327790, 2, 0, 327793, 2, 0, 393221, 1, 0, 393228, 1, 0, 393236, 1, 0, 393239, 1610612736, 0, 393240, 1610612736, 0, 393241, 1610612736, 0, 393242, 1610612736, 0, 393243, 1610612736, 0, 393244, 1610612736, 0, 393245, 1610612736, 0, 393246, 1610612736, 0, 393247, 1610612736, 0, 393248, 1610612736, 0, 393249, 1610612736, 0, 393250, 1610612736, 0, 393251, 1610612736, 0, 393252, 1610612736, 0, 393268, 3, 0, 393273, 3, 0, 393307, 3, 0, 393315, 2, 0, 393318, 2, 0, 393321, 2, 0, 393324, 2, 0, 393326, 1, 0, 393329, 1, 0, 393331, 1610612736, 0, 458757, 1, 0, 458764, 1, 0, 458772, 1, 0, 458775, 2, 0, 458782, 2, 0, 458788, 2, 0, 458789, 1610612736, 0, 458796, 1610612736, 0, 458818, 3, 0, 458826, 3, 0, 458834, 3, 0, 458849, 1610612736, 0, 458850, 1610612736, 0, 458851, 1610612736, 0, 458852, 1610612736, 0, 458853, 1610612736, 0, 458854, 1610612736, 0, 458855, 1610612736, 0, 458856, 1610612736, 0, 458857, 1610612736, 0, 458858, 1610612736, 0, 458859, 1610612736, 0, 458860, 1610612736, 0, 458861, 1610612736, 0, 458862, 1610612736, 0, 458863, 1610612736, 0, 458864, 1610612736, 0, 458865, 1610612736, 0, 458866, 1610612736, 0, 458867, 1610612736, 0, 524293, 1, 0, 524300, 1, 0, 524308, 1, 0, 524311, 1, 0, 524318, 1, 0, 524324, 1, 0, 524326, 1610612736, 0, 524332, 2, 0, 589829, 1, 0, 589836, 1, 0, 589844, 1, 0, 589847, 1, 0, 589854, 1, 0, 589860, 1, 0, 589863, 1610612736, 0, 589865, 1610612736, 0, 589867, 1610612736, 0, 589868, 1, 0, 655365, 1, 0, 655372, 1, 0, 655380, 1, 0, 655383, 1, 0, 655390, 1, 0, 655396, 1, 0, 655399, 2, 0, 655401, 2, 0, 655403, 2, 0, 655404, 1, 0, 720901, 1, 0, 720908, 1, 0, 720916, 1, 0, 720919, 1, 0, 720926, 1, 0, 720932, 1, 0, 720935, 1, 0, 720937, 1, 0, 720939, 1, 0, 720940, 1, 0, 786437, 1, 0, 786444, 1, 0, 786452, 1, 0, 786455, 1, 0, 786462, 1, 0, 786468, 1, 0, 786471, 1, 0, 786473, 1, 0, 786475, 1, 0, 786476, 1, 0, 851973, 1, 0, 851980, 1, 0, 851988, 1, 0, 851991, 1, 0, 851998, 1, 0, 852004, 1, 0, 852007, 1, 0, 852009, 1, 0, 852011, 1, 0, 852012, 1, 0, 917509, 1, 0, 917516, 1, 0, 917524, 1, 0, 917527, 1, 0, 917534, 1, 0, 917540, 1, 0, 917543, 1, 0, 917545, 1, 0, 917547, 1, 0, 917548, 1, 0, 983045, 1, 0, 983052, 1, 0, 983060, 1, 0, 983063, 1, 0, 983070, 1, 0, 983076, 1, 0, 983079, 1, 0, 983081, 1, 0, 983083, 1, 0, 983084, 1, 0, 1048581, 1, 0, 1048588, 1, 0, 1048596, 1, 0, 1048599, 1, 0, 1048606, 1, 0, 1048612, 1, 0, 1048615, 1, 0, 1048617, 1, 0, 1048619, 1, 0, 1048620, 1, 0, 1114117, 1, 0, 1114124, 1, 0, 1114132, 1, 0, 1114135, 1, 0, 1114142, 1, 0, 1114148, 1, 0, 1114151, 1, 0, 1114153, 1, 0, 1114155, 1, 0, 1114156, 1, 0, 1179653, 1, 0, 1179660, 1, 0, 1179668, 1, 0, 1179671, 1, 0, 1179678, 1, 0, 1179684, 1, 0, 1179687, 1, 0, 1179689, 1, 0, 1179691, 1, 0, 1179692, 1, 0, 1245189, 1, 0, 1245196, 1, 0, 1245204, 1, 0, 1245207, 1, 0, 1245214, 1, 0, 1245220, 1, 0, 1245223, 1, 0, 1245225, 1, 0, 1245227, 1, 0, 1245228, 1, 0, 1310725, 1, 0, 1310732, 1, 0, 1310740, 1, 0, 1310743, 1, 0, 1310750, 1, 0, 1310756, 1, 0, 1310759, 1, 0, 1310761, 1, 0, 1310763, 1, 0, 1310764, 1, 0 )
-_sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="rotating_spikes" type="Node" parent="." index="7"]
+[node name="rotating_spikes" type="Node" parent="."]
 
-editor/display_folded = true
-
-[node name="RotatingSpike2" parent="rotating_spikes" index="0" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike2" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 1344, 256 )
 
-[node name="moving_spike" parent="rotating_spikes" index="1" instance=ExtResource( 4 )]
+[node name="moving_spike" parent="rotating_spikes" instance=ExtResource( 4 )]
+position = Vector2( 3206.4, 160 )
 
-position = Vector2( 3217.7, 160 )
+[node name="RotatingSpike4" parent="rotating_spikes" instance=ExtResource( 4 )]
+position = Vector2( 3315.2, 160 )
 
-[node name="RotatingSpike4" parent="rotating_spikes" index="2" instance=ExtResource( 4 )]
+[node name="RotatingSpike7" parent="rotating_spikes" instance=ExtResource( 4 )]
+position = Vector2( 3398.4, 160 )
 
-position = Vector2( 3292.6, 160 )
-
-[node name="RotatingSpike7" parent="rotating_spikes" index="3" instance=ExtResource( 4 )]
-
-position = Vector2( 3409.7, 160 )
-
-[node name="RotatingSpike9" parent="rotating_spikes" index="4" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike9" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 3552, -32 )
 
-[node name="RotatingSpike10" parent="rotating_spikes" index="5" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike10" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 3584, -32 )
 
-[node name="RotatingSpike11" parent="rotating_spikes" index="6" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike11" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 3936, -288 )
 
-[node name="RotatingSpike12" parent="rotating_spikes" index="7" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike12" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 4064, -352 )
 
-[node name="RotatingSpike13" parent="rotating_spikes" index="8" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike13" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 4192, -352 )
 
-[node name="RotatingSpike14" parent="rotating_spikes" index="9" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike14" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 4352, -320 )
 
-[node name="RotatingSpike15" parent="rotating_spikes" index="10" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike15" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 4576, -352 )
 
-[node name="RotatingSpike16" parent="rotating_spikes" index="11" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike16" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 4672, -320 )
 
-[node name="RotatingSpike17" parent="rotating_spikes" index="12" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike17" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 4800, -352 )
 
-[node name="moving_r_spike2" parent="rotating_spikes" index="13" instance=ExtResource( 4 )]
+[node name="moving_r_spike2" parent="rotating_spikes" instance=ExtResource( 4 )]
+position = Vector2( 3532.8, -224 )
 
-position = Vector2( 3498.9, -224 )
+[node name="moving_r_spike3" parent="rotating_spikes" instance=ExtResource( 4 )]
+position = Vector2( 3603.2, -224 )
 
-[node name="moving_r_spike3" parent="rotating_spikes" index="14" instance=ExtResource( 4 )]
-
-position = Vector2( 3637.1, -224 )
-
-[node name="RotatingSpike" parent="rotating_spikes" index="15" instance=ExtResource( 4 )]
-
+[node name="RotatingSpike" parent="rotating_spikes" instance=ExtResource( 4 )]
 position = Vector2( 1280, 256 )
 
-[node name="spike mover" type="AnimationPlayer" parent="rotating_spikes" index="16"]
-
-root_node = NodePath("..")
+[node name="spike mover" type="AnimationPlayer" parent="rotating_spikes"]
 autoplay = "moving spikes"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 "anims/moving spikes" = SubResource( 2 )
-blend_times = [  ]
 
-[node name="orb_next_level" parent="." index="8" instance=ExtResource( 5 )]
-
+[node name="orb_next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 4992, -416 )
 
 [node name="next_level" parent="orb_next_level" index="0"]
-
 next_scene = "res://nodes/levels/end_scene.tscn"
-
 
 [editable path="orb_next_level"]

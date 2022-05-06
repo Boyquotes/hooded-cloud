@@ -5,38 +5,16 @@
 
 [node name="RotatingSpike" type="KinematicBody2D"]
 
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 hframes = 4
 script = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Offset" ]
-current_frame = 0
-start_frame = 0
 end_frame = 3
 is_playing = true
 
-[node name="death_area" type="Area2D" parent="." index="1"]
+[node name="death_area" type="Area2D" parent="."]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="death_area" index="0"]
-
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="death_area"]
 position = Vector2( 16, 16 )
-build_mode = 0
 polygon = PoolVector2Array( -11.9498, 12.4249, 11.1194, 12.9005, 11.1194, -12.5469, -12.6633, -12.7847 )
-
-

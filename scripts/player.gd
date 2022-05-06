@@ -13,13 +13,15 @@ const JUMP_SPEED = 450
 var falling_speed = FALL_SPEED
 var jump_speed = JUMP_SPEED
 var gravity = 20
+var can_play_jump_sound = true
 
 func _ready():
-	set_process(true)
+	set_physics_process(true)
 	set_process_input(true)
 	get_node("jump_timer").connect("timeout",self,"jump_finished")
 
 func jump_finished():
+	can_play_jump_sound = true
 	jumping = false
 
 func _input(event):
@@ -42,12 +44,22 @@ func _input(event):
 	elif event.is_action_released("ui_right"):
 		moving_right = false
 
-func _process(delta):
+func _physics_process(delta):
 	if falling_speed != FALL_SPEED:
 		get_node("Sprite").play(4,7)
 		jumping = false
 		falling = true
 	if jumping:
+		if can_play_jump_sound:
+			var jmpnode = get_node("jump_sound")
+			var signadd = 1 if rand_range(0.0, 1.0) > 0.5 else -1
+			jmpnode.pitch_scale += rand_range(0.1,0.3) * signadd;
+			if jmpnode.pitch_scale > 1.5:
+				jmpnode.pitch_scale = 1.0
+			elif jmpnode.pitch_scale < 0.5:
+				jmpnode.pitch_scale = 1.0
+			jmpnode.play()
+			can_play_jump_sound = false
 		get_node("Sprite").play(4,7)
 		if jump_speed > -400:
 			if mid_air_release:
@@ -64,20 +76,24 @@ func _process(delta):
 	else:
 		move_and_slide(Vector2(0.0, falling_speed), Vector2(0,-1))
 	if is_on_floor():
+		can_play_jump_sound = true
 		on_ground = true
 		falling = false
 		falling_speed = FALL_SPEED
 		jump_speed = JUMP_SPEED
 		if jumping:
 			get_node("Sprite").stop(0)
+
 		if not on_ground:
 			get_node("Sprite").play(4,7)
 		jumping = false
 	else:
 		if not jumping:
 			if falling_speed <= 400:
+				print("FIXME: introduce some grace time for jumping")
 				falling_speed += gravity
 			else:
+				print("falling?")
 				falling_speed = 400
 				
 	if moving_left:

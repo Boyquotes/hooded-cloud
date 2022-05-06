@@ -10,11 +10,11 @@ func change_position():
 	var newpos = get_tree().get_root().get_node("root/spawn_point").get_position()
 	get_parent().set_position(newpos)
 	get_parent().set_process_input(true)
-	get_parent().set_process(true)
+	get_parent().set_physics_process(true)
 	disabled = false
 
 func change_level(obj):
-	get_parent().set_process(true)
+	get_parent().set_physics_process(true)
 	get_parent().set_process_input(true)
 	get_tree().change_scene(obj.next_scene)
 
@@ -27,18 +27,18 @@ func on_area_enter(obj):
 	print(obj.name, " entered player area ", obj.get_class())
 	if obj.name == "death_area" and not disabled:
 		disabled = true
-		get_parent().set_process(false)
+		get_parent().set_physics_process(false)
 		get_parent().set_process_input(false)
 		get_parent().get_node("Sprite").play_once(14,19)
 		get_parent().moving_right = false
 		get_parent().moving_left = false
 		get_parent().get_node("death_timer").start()
 		get_parent().get_node("death_sound").play()
-	elif obj.name == "checkpoint" or obj.name == "checkpoint2" or obj.name == "checkpoint3":
+	elif obj.name.begins_with("checkpoint"):
 		var spawn_point = get_tree().get_root().get_node("root/spawn_point")
 		spawn_point.set_position(obj.get_position())
 	elif obj.name == "next_level":
-		get_parent().set_process(false)
+		get_parent().set_physics_process(false)
 		get_parent().set_process_input(false)
 		var ts = transition_screen.instance()
 		ts.connect("fully_covered", self, "change_level", [obj])

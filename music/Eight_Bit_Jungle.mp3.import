@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Eight_Bit_Jungle.mp3-f4dbbd2b3bca5d1da5e690964ebb1173.mp3str"
+
+[deps]
+
+source_file="res://music/Eight_Bit_Jungle.mp3"
+dest_files=[ "res://.import/Eight_Bit_Jungle.mp3-f4dbbd2b3bca5d1da5e690964ebb1173.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
