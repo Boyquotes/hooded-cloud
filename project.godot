@@ -14,8 +14,46 @@ config/name="Hooded Cloud"
 run/main_scene="res://nodes/intro_scene.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/width=800
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": true,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
-environment/default_clear_color=Color( 1, 1, 1, 1 )
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+quality/filters/use_nearest_mipmap_filter=true
+2d/options/use_software_skinning=false
+quality/spatial_partitioning/use_bvh=false
+environment/default_clear_color=Color( 0, 0.501961, 1, 1 )
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

@@ -17,11 +17,14 @@ func on_area_enter(obj):
 func end_blinking():
 	set_process(false)
 	get_node("RichTextLabel").visible = false
+	get_node("chkpoint_sprite").visible = false
 
 func _process(delta):
 	time += delta
 	if time > 0.2:
 		get_node("RichTextLabel").visible = false
+		get_node("chkpoint_sprite").visible = false
 	if time > 0.4:
 		get_node("RichTextLabel").visible = true
+		get_node("chkpoint_sprite").visible = true
 		time = 0
